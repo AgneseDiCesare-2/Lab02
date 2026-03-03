@@ -1,25 +1,40 @@
 import translator as tr
 
 t = tr.Translator()
+t.loadDictionary("dictionary.txt")
+continua=True
 
+while(continua):
 
-while(True):
+    print(t.printMenu())
+    txtIn = (input("scegli un'opzione: ")).strip()
 
-    t.printMenu()
-
-    t.loadDictionary("filename.txt")
-
-    txtIn = input()
+    if not txtIn.isdigit():
+        print ("input non valido")
 
     # Add input control here!
 
     if int(txtIn) == 1:
-        print()
-        txtIn = input()
-        pass
+        parola = input("Inserisci: <parola_aliena> <traduzione>: "). strip().lower()
+        if not parola.isalpha():
+            print("Errore: la parola deve contenere solo lettere.")
+            continue
+        print(t.handleAdd(parola))
+
     if int(txtIn) == 2:
-        pass
+        query = input("Parola aliena da tradurre: ").strip()
+        if not query.isalpha():
+            print("Errore: la parola deve contenere solo lettere.")
+            continue
+        print(t.handleTranslate(query))
+
     if int(txtIn) == 3:
         pass
+
     if int(txtIn) == 4:
-        break
+        #leggi tutto il dizionario
+        for corrisp in t.dizionari:
+            print(corrisp)
+
+    if int(txtIn) == 5:
+        continua=False
