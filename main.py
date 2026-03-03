@@ -16,9 +16,11 @@ while(continua):
 
     if int(txtIn) == 1:
         parola = input("Inserisci: <parola_aliena> <traduzione>: "). strip().lower()
-        if not parola.isalpha():
-            print("Errore: la parola deve contenere solo lettere.")
-            continue
+        inserite=parola.split()
+        for elemento in inserite:
+            if not elemento.isalpha():
+                print("Errore: la parola deve contenere solo lettere.")
+                continue
         print(t.handleAdd(parola))
 
     if int(txtIn) == 2:
@@ -29,7 +31,8 @@ while(continua):
         print(t.handleTranslate(query))
 
     if int(txtIn) == 3:
-        pass
+        parola = input("Inserisci: <parola_aliena> <traduzione>: ").strip().lower()
+        print(t.handleWildCard(parola))
 
     if int(txtIn) == 4:
         #leggi tutto il dizionario
